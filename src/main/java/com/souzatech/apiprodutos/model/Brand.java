@@ -25,10 +25,10 @@ public class Brand implements Serializable {
 
     private Boolean active;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+//    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+//    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant updatedAt;
     @PrePersist
     public void prePersist() {
