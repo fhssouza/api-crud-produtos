@@ -14,6 +14,10 @@ public interface BrandService {
     List<Brand> findByListName(String name);
     Brand create(Brand entity);
     Brand update(Long id, Brand entity);
+    Brand activeById(Long id);
+    Brand inactiveById(Long id);
     void deleteById(Long id);
+
+
 
 }

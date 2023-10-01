@@ -56,6 +56,26 @@ public class BrandController {
                 .body(brand);
     }
 
+    @PutMapping("/{id}/ativar")
+    public ResponseEntity<Brand> activeById(@PathVariable Long id, UriComponentsBuilder uri){
+        Brand brand = service.activeById(id);
+        return ResponseEntity.created(uri
+                        .path("/marcas/ativar/{id}")
+                        .buildAndExpand(id)
+                        .toUri())
+                .body(brand);
+    }
+
+    @PutMapping("/{id}/inativar")
+    public ResponseEntity<Brand> inactiveById(@PathVariable Long id, UriComponentsBuilder uri){
+        Brand brand = service.inactiveById(id);
+        return ResponseEntity.created(uri
+                        .path("/marcas/ativar/{id}")
+                        .buildAndExpand(id)
+                        .toUri())
+                .body(brand);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
        service.deleteById(id);

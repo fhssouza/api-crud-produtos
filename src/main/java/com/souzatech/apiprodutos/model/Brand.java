@@ -23,17 +23,18 @@ public class Brand implements Serializable {
     @Column(nullable = false)
     private String name;
 
+    private Boolean active;
+
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant updatedAt;
-
     @PrePersist
     public void prePersist() {
         createdAt = Instant.now();
+        active = true;
     }
-
     @PreUpdate
     public void preUpdate() {
         updatedAt = Instant.now();

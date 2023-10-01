@@ -2,6 +2,7 @@ package com.souzatech.apiprodutos.exception.handler;
 
 import com.souzatech.apiprodutos.dto.error.StandardError;
 import com.souzatech.apiprodutos.exception.DataIntegrityViolationException;
+import com.souzatech.apiprodutos.exception.EntityActiveInactive;
 import com.souzatech.apiprodutos.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,19 @@ public class ResourceHandler {
                 .statusCode(HttpStatus.CONFLICT.value())
                 .error("Data Integrity Violation Exception")
                 .message(d.getMessage())
+                .path(request.getRequestURI())
+                .build());
+    }
+
+    @ExceptionHandler(EntityActiveInactive.class)
+    public ResponseEntity<StandardError> entityInative(RuntimeException r,
+                                                                         HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(StandardError.builder()
+                .timestamp(Instant.now())
+                .httpStatus(HttpStatus.CONFLICT)
+                .statusCode(HttpStatus.CONFLICT.value())
+                .error("RuntimeException")
+                .message(r.getMessage())
                 .path(request.getRequestURI())
                 .build());
     }
